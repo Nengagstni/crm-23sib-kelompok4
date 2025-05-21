@@ -6,7 +6,7 @@ const initialCustomers = [
   { id: 3, name: "Andi Wijaya", email: "andi@mail.com", phone: "081299988877", active: true },
 ];
 
-export default function SalesManagement() {
+export default function CustomerManagement() {
   const [customers, setCustomers] = useState(initialCustomers);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", active: true });
@@ -34,20 +34,20 @@ export default function SalesManagement() {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Yakin ingin menghapus penjualan ini?")) {
+    if (window.confirm("Yakin ingin menghapus pelanggan ini?")) {
       setCustomers(customers.filter((c) => c.id !== id));
     }
   };
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-4">Management Penjualan</h1>
+      <h1 className="text-2xl font-semibold mb-4">Management Pelanggan</h1>
 
       <button
         onClick={() => setShowForm((prev) => !prev)}
         className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
       >
-        {showForm ? "Batal Tambah Penjualan" : "Tambah Penjualan"}
+        {showForm ? "Batal Tambah Pelanggan" : "Tambah Pelanggan"}
       </button>
 
       {showForm && (
@@ -60,7 +60,7 @@ export default function SalesManagement() {
               value={formData.name}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Nama penjualan"
+              placeholder="Nama pelanggan"
             />
           </div>
           <div className="mb-2">
@@ -71,7 +71,7 @@ export default function SalesManagement() {
               value={formData.email}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Email penjualan"
+              placeholder="Email pelanggan"
             />
           </div>
           <div className="mb-2">
@@ -152,7 +152,7 @@ export default function SalesManagement() {
             {customers.length === 0 && (
               <tr>
                 <td colSpan={5} className="text-center py-4 text-gray-500">
-                  Tidak ada data penjualan
+                  Tidak ada data pelanggan
                 </td>
               </tr>
             )}
@@ -162,5 +162,3 @@ export default function SalesManagement() {
     </div>
   );
 }
-
-

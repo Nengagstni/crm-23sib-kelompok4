@@ -15,6 +15,7 @@ const menuItems = [
   { name: 'Dashboard', icon: <LayoutDashboard />, path: '/' },
   { name: 'Produk', icon: <Box />, path: '/produk' },
   { name: 'Penjualan', icon: <ShoppingCart/>, path: '/penjualan' },
+   { name: 'CustomerManagement', icon: <ShoppingCart/>, path: '/CustomerManagement' },
   { name: 'Laporan', icon: <BarChart2 />, path: '/laporan' },
 ]
 
