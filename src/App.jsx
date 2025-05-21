@@ -13,8 +13,8 @@ function App() {
         <Route path="/penjualan" element={<SalesManagement/>}/>
         <Route path="/produk" element={<ProductManagement/>}/>
         </Route>
+        
       </Routes>
-  
   )
 }
 
