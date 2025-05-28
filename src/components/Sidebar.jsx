@@ -21,9 +21,6 @@ const menuItems = [
   { name: 'Penjualan', icon: <ShoppingCart/>, path: '/penjualan' },
   { name: 'Pelanggan', icon: <ShoppingCart/>, path: '/pelanggan' },
   { name: 'Laporan', icon: <BarChart2 />, path: '/laporan' },
-  { name: 'JenisPerawatan', icon: <FaTooth />, path: 'jenis-perawatan'},
-  { name: 'Reservasi', icon: <CalendarCheck />, path: '/reservasi' },
-
 ]
 
 const accountItems = [
