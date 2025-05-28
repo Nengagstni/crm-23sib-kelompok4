@@ -8,6 +8,8 @@ import {
   User,
   LogIn,
   UserPlus,
+  PanelsRightBottom,
+  MessageCircle,
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -16,6 +18,8 @@ const menuItems = [
   { name: 'Produk', icon: <Box />, path: '/produk' },
    { name: 'CustomerManagement', icon: <ShoppingCart/>, path: '/CustomerManagement' },
   { name: 'Laporan', icon: <BarChart2 />, path: '/laporan' },
+  { name: 'PromoList', icon: <PanelsRightBottom />, path: '/Promo' },
+   { name: 'TestimoniPasien', icon: <MessageCircle />, path: '/TestimoniPasien' },
 ]
 
 const accountItems = [
