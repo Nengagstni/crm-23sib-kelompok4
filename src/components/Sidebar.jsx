@@ -9,6 +9,8 @@ import {
   User,
   LogIn,
   UserPlus,
+  PanelsRightBottom,
+  MessageCircle,
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaTooth } from "react-icons/fa"; 
@@ -21,6 +23,8 @@ const menuItems = [
   { name: 'Penjualan', icon: <ShoppingCart/>, path: '/penjualan' },
   { name: 'Pelanggan', icon: <ShoppingCart/>, path: '/pelanggan' },
   { name: 'Laporan', icon: <BarChart2 />, path: '/laporan' },
+  { name: 'PromoList', icon: <PanelsRightBottom />, path: '/Promo' },
+   { name: 'TestimoniPasien', icon: <MessageCircle />, path: '/TestimoniPasien' },
 ]
 
 const accountItems = [
