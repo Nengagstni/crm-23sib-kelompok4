@@ -1,4 +1,3 @@
-
 import {
   LayoutDashboard,
   Users,
@@ -7,13 +6,12 @@ import {
   BarChart2,
   Settings,
   LogIn,
-  UserPlus,
   MessageCircle,
-} from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
-import { FaTooth } from "react-icons/fa"; 
+} from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { FaTooth } from 'react-icons/fa';
 import { CalendarCheck } from 'lucide-react';
-
+import { Tag } from 'lucide-react'; // Untuk ikon Promo
 
 const menuItems = [
   { name: 'Dashboard', icon: <LayoutDashboard />, path: '/' },
@@ -21,14 +19,14 @@ const menuItems = [
   { name: 'Penjualan', icon: <ShoppingCart />, path: '/penjualan' },
   { name: 'Pelanggan', icon: <Users />, path: '/pelanggan' },
   { name: 'Laporan', icon: <BarChart2 />, path: '/laporan' },
-  { name: 'PromoList', icon: <PanelsRightBottom />, path: '/Promo' },
-   { name: 'TestimoniPasien', icon: <MessageCircle />, path: '/TestimoniPasien' },
-]
+  { name: 'PromoList', icon: <Tag />, path: '/PromoList' },
+  { name: 'JanjiTemu', icon: <CalendarCheck />, path: '/JanjiTemu' },
+  { name: 'TestimoniPasien', icon: <MessageCircle />, path: '/TestimoniPasien' },
+];
 
 const accountItems = [
   { name: 'Pengaturan Akun', icon: <Settings />, path: '/akun' },
   { name: 'Sign In', icon: <LogIn />, path: '/signin' },
-  { name: 'Sign Up', icon: <UserPlus />, path: '/signup' },
 ];
 
 const Sidebar = () => {
@@ -40,7 +38,7 @@ const Sidebar = () => {
       className="w-64 h-screen px-4 py-6 hidden md:block"
       style={{ backgroundColor: '#EFD070' }}
     >
-      {/* Card View Logo */}
+      {/* Logo Klinik */}
       <div className="bg-[#1D5B5C] p-4 rounded-xl mb-6 shadow-md flex justify-center">
         <img
           src="https://gaiadentalclinic.id/wp-content/uploads/2023/03/gaia-logo-side-2-1400x408.png"
@@ -48,8 +46,6 @@ const Sidebar = () => {
           className="w-36 h-auto"
         />
       </div>
-
-      
 
       <nav className="space-y-1">
         {menuItems.map((item) => (

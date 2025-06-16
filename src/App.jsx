@@ -12,13 +12,7 @@ import Email from './pages/Email';
 import JanjiTemu from './pages/JanjiTemu'; // ✅ Import JanjiTemu
 import { LogIn } from 'lucide-react';
 import Signin from './pages/Signin';
-import Fasilitas from './pages/Fasilitas'
-import JenisPerawatan from './pages/JenisPerawatan'
-import Profile from './pages/Profile'
-import PromoList from './pages/PromoList'
-import Reservasi from './pages/Reservasi'
-import TestimoniPasien from './pages/TestimoniPasien'
-import JanjiTemu from './pages/JanjiTemu'
+
 
 
 function App() {
