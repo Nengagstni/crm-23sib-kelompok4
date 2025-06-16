@@ -30,63 +30,63 @@ const Reservasi = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white p-8 md:p-16 font-sans">
-      <h1 className="text-4xl font-extrabold text-purple-800 mb-12 text-center drop-shadow-md">
-        Formulir Reservasi <span className="text-purple-600">Gaia Dental Clinic</span>
+    <div className="min-h-screen bg-[#1D5B5C] p-8 md:p-16 font-sans">
+      <h1 className="text-4xl font-extrabold text-white mb-12 text-center drop-shadow-md">
+        Formulir Reservasi <span className="text-yellow-300">Gaia Dental Clinic</span>
       </h1>
 
-      {/* Form container centered */}
-      <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-lg p-8 mb-14">
-        <h2 className="text-2xl font-semibold text-purple-700 mb-6 border-b pb-2">
+      {/* Card dengan background kuning */}
+      <div className="max-w-lg mx-auto rounded-2xl shadow-lg p-8 mb-14" style={{ backgroundColor: '#EFD070' }}>
+        <h2 className="text-2xl font-semibold text-[#1D5B5C] mb-6 border-b pb-2"> {/* Ubah warna teks menjadi hijau */}
           Isi Data Reservasi
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Nama Lengkap</label>
+            <label className="block text-gray-800 font-medium mb-1">Nama Lengkap</label>
             <input
               type="text"
               name="nama"
               value={form.nama}
               onChange={handleChange}
               placeholder="Masukkan nama lengkap"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Email</label>
+            <label className="block text-gray-800 font-medium mb-1">Email</label>
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
               placeholder="contoh@email.com"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Tanggal Reservasi</label>
+            <label className="block text-gray-800 font-medium mb-1">Tanggal Reservasi</label>
             <input
               type="date"
               name="tanggal"
               value={form.tanggal}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Pilih Layanan</label>
+            <label className="block text-gray-800 font-medium mb-1">Pilih Layanan</label>
             <select
               name="layanan"
               value={form.layanan}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
               required
             >
               <option value="">-- Pilih Jenis Perawatan --</option>
@@ -102,29 +102,29 @@ const Reservasi = () => {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Catatan Tambahan</label>
+            <label className="block text-gray-800 font-medium mb-1">Catatan Tambahan</label>
             <textarea
               name="catatan"
               value={form.catatan}
               onChange={handleChange}
               rows="4"
               placeholder="Masukkan catatan tambahan (opsional)"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition resize-none"
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition resize-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white font-semibold py-3 rounded-xl hover:bg-purple-700 transition"
+            className="w-full bg-[#1D5B5C] text-white font-semibold py-3 rounded-xl hover:bg-[#174746] transition" // Ubah warna tombol menjadi hijau
           >
             Kirim Reservasi
           </button>
         </form>
       </div>
 
-      {/* Table container centered */}
+      {/* Tabel Reservasi */}
       <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-6">
-        <h2 className="text-2xl font-semibold text-purple-700 mb-6 border-b pb-2">
+        <h2 className="text-2xl font-semibold text-[#1D5B5C] mb-6 border-b pb-2"> {/* Ubah warna teks menjadi hijau */}
           Daftar Reservasi
         </h2>
 
@@ -147,11 +147,11 @@ const Reservasi = () => {
                   className={index % 2 === 0 ? 'bg-white' : 'bg-purple-50'}
                 >
                   <td className="px-6 py-4 border-t border-gray-200">{index + 1}</td>
-                  <td className="px-6 py-4 border-t border-gray-200">{data.nama}</td>
-                  <td className="px-6 py-4 border-t border-gray-200">{data.email}</td>
-                  <td className="px-6 py-4 border-t border-gray-200">{data.tanggal}</td>
-                  <td className="px-6 py-4 border-t border-gray-200">{data.layanan}</td>
-                  <td className="px-6 py-4 border-t border-gray-200">{data.catatan}</td>
+                  <td className="px-6 py-4 border-t border-gray-200 text-[#1D5B5C]">{data.nama}</td> {/* Ubah warna teks menjadi hijau */}
+                  <td className="px-6 py-4 border-t border-gray-200 text-[#1D5B5C]">{data.email}</td> {/* Ubah warna teks menjadi hijau */}
+                  <td className="px-6 py-4 border-t border-gray-200 text-[#1D5B5C]">{data.tanggal}</td> {/* Ubah warna teks menjadi hijau */}
+                  <td className="px-6 py-4 border-t border-gray-200 text-[#1D5B5C]">{data.layanan}</td> {/* Ubah warna teks menjadi hijau */}
+                  <td className="px-6 py-4 border-t border-gray-200 text-[#1D5B5C]">{data.catatan}</td> {/* Ubah warna teks menjadi hijau */}
                 </tr>
               ))}
             </tbody>
