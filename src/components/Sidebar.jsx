@@ -1,14 +1,3 @@
-import { BiCalendar } from "react-icons/bi"; 
-import { CgProfile } from "react-icons/cg"; 
-import { FaCartArrowDown } from "react-icons/fa"; 
-import { FaTooth } from "react-icons/fa"; 
-import { GoClock } from "react-icons/go";
-import { BiCalendar } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
-import { FaCartArrowDown } from "react-icons/fa";
-import { Link, useLocation } from 'react-router-dom'
-import { CalendarCheck } from 'lucide-react';
-
 
 import {
   LayoutDashboard,
@@ -21,8 +10,10 @@ import {
   UserPlus,
   MessageCircle,
 } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { FaTooth } from "react-icons/fa"; 
+import { CalendarCheck } from 'lucide-react';
 
-import { Link, useLocation } from 'react-router-dom';
 
 const menuItems = [
   { name: 'Dashboard', icon: <LayoutDashboard />, path: '/' },
@@ -30,14 +21,8 @@ const menuItems = [
   { name: 'Penjualan', icon: <ShoppingCart />, path: '/penjualan' },
   { name: 'Pelanggan', icon: <Users />, path: '/pelanggan' },
   { name: 'Laporan', icon: <BarChart2 />, path: '/laporan' },
-  { name: 'PromoList', icon: <PanelsRightBottom />, path: '/PromoList' },
-  { name: 'TestimoniPasien', icon: <MessageCircle />, path: '/TestimoniPasien' },
-  // { name: 'JenisPerawatan', icon: <FaTooth />, path: '/JenisPerawatan' },
-  { name: 'Fasilitas', icon: <FaCartArrowDown />, path: '/Fasilitas' },
-  { name: 'Profile', icon: <CgProfile />, path: '/Profile />' },
-  { name: 'Reservasi', icon: <BiCalendar/>, path: '/Reservasi />' },
-  { name: 'Janji Temu', icon: <BiCalendar />, path: '/JanjiTemu' }, 
-  { name: 'Email', icon: <FaCartArrowDown />, path: '/Email' }
+  { name: 'PromoList', icon: <PanelsRightBottom />, path: '/Promo' },
+   { name: 'TestimoniPasien', icon: <MessageCircle />, path: '/TestimoniPasien' },
 ]
 
 const accountItems = [
