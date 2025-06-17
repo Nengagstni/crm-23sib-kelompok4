@@ -26,7 +26,7 @@ const PromoList = () => {
   ];
 
   return (
-    <div className="p-6 bg-white min-h-screen">
+    <div className="">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-teal-700">
         Promo Gaia Dental Clinic
       </h2>
@@ -40,7 +40,7 @@ const PromoList = () => {
             <img
               src={promo.image}
               alt={promo.title}
-              className="w-full h-48 object-cover"
+              className="w-full object-contain"
             />
             <div className="p-4">
               <h4 className="text-lg font-semibold">{promo.title}</h4>

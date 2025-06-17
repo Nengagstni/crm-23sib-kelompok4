@@ -39,7 +39,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen py-10 px-4" style={{ backgroundColor: '#1D5B5C' }}>
+    <div className="min-h-screen px-4 py-10" style={{ backgroundColor: '#1D5B5C' }}>
       <h1 className="text-center text-3xl font-bold text-white mb-10">
         Tim Dokter Gigi Gaia
       </h1>
