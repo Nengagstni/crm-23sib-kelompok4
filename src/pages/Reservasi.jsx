@@ -30,7 +30,7 @@ const Reservasi = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1D5B5C] p-8 md:p-16 font-sans">
+    <div className="min-h-screen bg-[#1D5B5C] p-8 md:p-16 font-san">
       <h1 className="text-4xl font-extrabold text-white mb-12 text-center drop-shadow-md">
         Formulir Reservasi <span className="text-yellow-300">Gaia Dental Clinic</span>
       </h1>
