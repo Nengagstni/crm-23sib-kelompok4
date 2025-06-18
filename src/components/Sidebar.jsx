@@ -31,7 +31,9 @@ const menuItems = [
   { name: "Email", icon: <AiOutlineMail />, path: "/Email" },
   { name: "Fasilitas", icon: <MdBedroomBaby />, path: "/Fasilitas" },
   { name: "JenisPerawatan", icon: <GiTooth />, path: "/JenisPerawatan" },
+   { name: "TriggerMarketing", icon: <BsFillPeopleFill />, path: "/TriggerMarketing" },
   { name: "Profile", icon: <BsFillPeopleFill />, path: "/Profile" },
+ 
 ];
 
 const accountItems = [

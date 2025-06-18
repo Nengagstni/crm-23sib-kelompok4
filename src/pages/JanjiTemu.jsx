@@ -66,8 +66,10 @@ const JanjiTemu = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white mt-10 shadow rounded-xl">
-      <h2 className="text-2xl font-bold mb-6 text-center">Form Janji Temu Pasien</h2>
+    <div className="max-w-5xl mx-auto p-6 mt-10 bg-white shadow-xl rounded-xl border border-[#1D5B5C]">
+      <h2 className="text-2xl font-bold mb-6 text-center text-[#1D5B5C]">
+        Form Janji Temu Pasien
+      </h2>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4 mb-8">
@@ -78,7 +80,7 @@ const JanjiTemu = () => {
             placeholder="Nama Pasien"
             value={formData.nama}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border border-[#1D5B5C] p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#EFD070]"
           />
           <input
             type="text"
@@ -86,27 +88,27 @@ const JanjiTemu = () => {
             placeholder="Tindakan"
             value={formData.tindakan}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border border-[#1D5B5C] p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#EFD070]"
           />
           <input
             type="date"
             name="tanggal"
             value={formData.tanggal}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border border-[#1D5B5C] p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#EFD070]"
           />
           <input
             type="time"
             name="jam"
             value={formData.jam}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border border-[#1D5B5C] p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#EFD070]"
           />
           <select
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border border-[#1D5B5C] p-2 rounded w-full text-[#1D5B5C]"
           >
             <option value="Menunggu">Menunggu</option>
             <option value="Selesai">Selesai</option>
@@ -117,9 +119,11 @@ const JanjiTemu = () => {
         <div className="flex gap-2">
           <button
             type="submit"
-            className={`${
-              editIndex !== null ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-600 hover:bg-green-700'
-            } text-white px-4 py-2 rounded`}
+            className={`px-4 py-2 text-white rounded font-semibold ${
+              editIndex !== null
+                ? 'bg-[#EFD070] text-[#1D5B5C] hover:bg-yellow-400'
+                : 'bg-[#1D5B5C] hover:bg-[#164949]'
+            }`}
           >
             {editIndex !== null ? 'Simpan Perubahan' : 'Tambah Janji'}
           </button>
@@ -139,26 +143,26 @@ const JanjiTemu = () => {
       </form>
 
       {/* Tabel Daftar Janji */}
-      <table className="w-full text-sm border border-gray-300">
-        <thead className="bg-green-100 text-gray-700">
+      <table className="w-full text-sm border border-[#1D5B5C]">
+        <thead className="bg-[#EFD070] text-[#1D5B5C]">
           <tr>
-            <th className="border p-2">Nama</th>
-            <th className="border p-2">Tindakan</th>
-            <th className="border p-2">Tanggal</th>
-            <th className="border p-2">Jam</th>
-            <th className="border p-2">Status</th>
-            <th className="border p-2">Aksi</th>
+            <th className="border border-[#1D5B5C] p-2">Nama</th>
+            <th className="border border-[#1D5B5C] p-2">Tindakan</th>
+            <th className="border border-[#1D5B5C] p-2">Tanggal</th>
+            <th className="border border-[#1D5B5C] p-2">Jam</th>
+            <th className="border border-[#1D5B5C] p-2">Status</th>
+            <th className="border border-[#1D5B5C] p-2">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {janjiList.map((janji, index) => (
-            <tr key={index} className="text-center">
-              <td className="border p-2">{janji.nama}</td>
-              <td className="border p-2">{janji.tindakan}</td>
-              <td className="border p-2">{janji.tanggal}</td>
-              <td className="border p-2">{janji.jam}</td>
-              <td className="border p-2">{janji.status}</td>
-              <td className="border p-2 space-x-1">
+            <tr key={index} className="text-center text-[#1D5B5C] bg-white hover:bg-[#fdf7e3]">
+              <td className="border border-[#1D5B5C] p-2">{janji.nama}</td>
+              <td className="border border-[#1D5B5C] p-2">{janji.tindakan}</td>
+              <td className="border border-[#1D5B5C] p-2">{janji.tanggal}</td>
+              <td className="border border-[#1D5B5C] p-2">{janji.jam}</td>
+              <td className="border border-[#1D5B5C] p-2">{janji.status}</td>
+              <td className="border border-[#1D5B5C] p-2 space-x-2">
                 <button
                   onClick={() => handleEdit(index)}
                   className="text-yellow-600 hover:underline"

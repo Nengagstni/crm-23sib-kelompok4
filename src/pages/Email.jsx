@@ -1,122 +1,247 @@
-import React from "react";
+import React, { useState } from 'react';
 
-const mailboxes = [
+const dummyEmails = [
   {
-    status: true,
-    email: "shreyababulkar.sb@gmail.com",
-    health: 8.9,
-    deliverability: "82%",
-    notBlacklisted: true,
+    id: 1,
+    sender: 'aa.customer@example.com',
+    subject: 'Pertanyaan Reservasi',
+    date: '2025-06-17',
+    body: `Halo, saya ingin menanyakan apakah masih ada slot reservasi untuk tanggal 25 Juni?  
+Terima kasih!  
+- aa customer`,
   },
   {
-    status: true,
-    email: "johnfoe@gmail.com",
-    health: 9.2,
-    deliverability: "70%",
-    notBlacklisted: true,
+    id: 2,
+    sender: 'admin@clinic.com',
+    subject: 'Reminder Reservasi',
+    date: '2025-06-18',
+    body: 'Halo, ini pengingat reservasi kamu di tanggal 2025-06-20. Terima kasih!',
   },
   {
-    status: true,
-    email: "shreyababulkar.sb@gmail.com",
-    health: 8.5,
-    deliverability: "81%",
-    notBlacklisted: true,
+    id: 3,
+    sender: 'marketing@clinic.com',
+    subject: 'Promo Perawatan Gigi',
+    date: '2025-06-15',
+    body: 'Dapatkan promo khusus minggu ini untuk pembersihan karang gigi.',
   },
   {
-    status: false,
-    email: "tayndevb@gmail.com",
-    health: 8.9,
-    deliverability: "42%",
-    notBlacklisted: false,
+    id: 4,
+    sender: 'aa.customer@example.com',
+    subject: 'Konfirmasi Pembatalan',
+    date: '2025-06-12',
+    body: `Saya ingin membatalkan reservasi saya pada tanggal 22 Juni. Mohon konfirmasi ya.  
+Terima kasih,  
+aa customer`,
   },
 ];
 
-export default function Email() {
-  return (
-    <div className="p-6 space-y-6">
-      {/* Email limit warning */}
-      <div className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 rounded">
-        <p>Your daily email limit is 100. Please increase by 50 per day. <span className="underline cursor-pointer text-sm ml-2">Edit limit</span></p>
-      </div>
+const Email = () => {
+  const [emails] = useState(dummyEmails);
+  const [selectedEmailId, setSelectedEmailId] = useState(emails[0]?.id || null);
+  const [sentEmails, setSentEmails] = useState([]);
 
-      {/* Performance Summary */}
-      <div className="grid grid-cols-4 gap-4">
-        {[
-          { title: "Sent", value: "1876", sub: "Increase compared to last week" },
-          { title: "Delivered", value: "1786", sub: "Increase compared to last week" },
-          { title: "Landed in Inbox", value: "94%", sub: "Increase compared to last week" },
-          { title: "Landed in Spam", value: "5%", sub: "Decreased compared to last week" },
-        ].map((item, idx) => (
-          <div key={idx} className="bg-white shadow rounded p-4">
-            <p className="text-gray-500">{item.title}</p>
-            <p className="text-2xl font-semibold">{item.value}</p>
-            <p className={`text-sm ${item.sub.includes("Decrease") ? "text-red-500" : "text-green-500"}`}>{item.sub}</p>
+  const [formData, setFormData] = useState({
+    to: '',
+    message: '',
+    type: 'Promo',
+  });
+
+  const selectedEmail = emails.find((email) => email.id === selectedEmailId);
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (formData.to && formData.message) {
+      const newEmail = {
+        id: sentEmails.length + 1,
+        sender: 'you@clinic.com',
+        subject: `${formData.type} untuk Customer`,
+        date: new Date().toISOString().split('T')[0],
+        body: formData.message,
+        to: formData.to,
+        type: formData.type,
+      };
+      setSentEmails([...sentEmails, newEmail]);
+      setFormData({ to: '', message: '', type: 'Promo' });
+    }
+  };
+
+  return (
+    <div
+      style={{
+        fontFamily: 'Arial, sans-serif',
+        color: '#1D5B5C',
+        maxWidth: 900,
+        margin: '30px auto',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+        borderRadius: 12,
+        overflow: 'hidden',
+        backgroundColor: '#fff',
+      }}
+    >
+      {/* Top horizontal sidebar */}
+      <div
+        style={{
+          display: 'flex',
+          overflowX: 'auto',
+          backgroundColor: '#EFD070',
+          borderBottom: '3px solid #1D5B5C',
+          padding: '10px 0',
+        }}
+      >
+        {emails.map((email) => (
+          <div
+            key={email.id}
+            onClick={() => setSelectedEmailId(email.id)}
+            style={{
+              flex: '0 0 auto',
+              cursor: 'pointer',
+              padding: '10px 20px',
+              margin: '0 10px',
+              borderRadius: 20,
+              backgroundColor: selectedEmailId === email.id ? '#1D5B5C' : 'transparent',
+              color: selectedEmailId === email.id ? '#EFD070' : '#1D5B5C',
+              fontWeight: selectedEmailId === email.id ? '700' : '500',
+              boxShadow:
+                selectedEmailId === email.id
+                  ? '0 4px 12px rgba(29,91,92,0.4)'
+                  : 'none',
+              transition: 'all 0.3s ease',
+              whiteSpace: 'nowrap',
+              userSelect: 'none',
+            }}
+            title={`${email.subject} - dari: ${email.sender}`}
+          >
+            <div style={{ fontSize: 16 }}>{email.subject}</div>
+            <div style={{ fontSize: 12, opacity: 0.7 }}>{email.sender}</div>
           </div>
         ))}
       </div>
 
-      {/* Mailbox Management */}
-      <div className="bg-white shadow rounded p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">Mailbox Management</h2>
-          <button className="px-3 py-1 bg-blue-600 text-white rounded">Add new mailbox +</button>
-        </div>
-        <table className="w-full table-auto text-left">
-          <thead>
-            <tr className="text-gray-600">
-              <th>Status</th>
-              <th>Email address</th>
-              <th>Account health</th>
-              <th>Deliverability</th>
-              <th>Not blacklisted</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {mailboxes.map((mb, idx) => (
-              <tr key={idx} className="border-t">
-                <td>
-                  <input type="checkbox" checked={mb.status} readOnly />
-                </td>
-                <td>{mb.email}</td>
-                <td>{mb.health}</td>
-                <td>{mb.deliverability}</td>
-                <td>{mb.notBlacklisted ? "✅" : "⚠️"}</td>
-                <td>⋯</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Email content */}
+      <div style={{ padding: 30 }}>
+        {selectedEmail ? (
+          <>
+            <h2
+              style={{
+                marginBottom: 8,
+                fontWeight: '700',
+                fontSize: 26,
+                borderBottom: '2px solid #EFD070',
+                paddingBottom: 6,
+              }}
+            >
+              {selectedEmail.subject}
+            </h2>
+            <div
+              style={{
+                color: '#555',
+                marginBottom: 20,
+                fontSize: 14,
+                fontStyle: 'italic',
+              }}
+            >
+              Dari: <strong>{selectedEmail.sender}</strong> | Tanggal: {selectedEmail.date}
+            </div>
+            <pre
+              style={{
+                whiteSpace: 'pre-wrap',
+                fontSize: 16,
+                lineHeight: 1.6,
+                backgroundColor: '#f6f1e7',
+                padding: 20,
+                borderRadius: 8,
+                boxShadow: 'inset 0 0 10px #e0d9b6',
+                userSelect: 'text',
+              }}
+            >
+              {selectedEmail.body}
+            </pre>
+          </>
+        ) : (
+          <p style={{ fontSize: 18, color: '#888', textAlign: 'center' }}>
+            Pilih email untuk melihat isi pesan.
+          </p>
+        )}
       </div>
 
-      {/* Right Panel Summary */}
-      <div className="grid grid-cols-3 gap-4">
-        {/* Mailbox health */}
-        <div className="bg-white shadow rounded p-4 space-y-2">
-          <h3 className="font-semibold">Mailbox health</h3>
-          <p><span className="text-2xl font-bold text-green-600">74%</span> - Good Health</p>
-          <p>Mailbox temp.: <span className="text-orange-500 font-semibold">298 / day</span></p>
-          <ul className="text-sm space-y-1">
-            <li>✅ SPF</li>
-            <li>✅ DKIM</li>
-            <li>✅ DMARC</li>
-            <li>✅ Not blacklisted</li>
+      {/* Form Kirim Email */}
+      <form onSubmit={handleSend} style={{ padding: 30, borderTop: '2px dashed #eee' }}>
+        <h3 style={{ fontSize: 20, marginBottom: 12 }}>✉️ Kirim Email ke Customer</h3>
+        <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
+          <select
+            value={formData.type}
+            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+            style={{
+              padding: 8,
+              borderRadius: 6,
+              border: '1px solid #ccc',
+              flex: '0 0 140px',
+            }}
+          >
+            <option value="Promo">Promo</option>
+            <option value="Reminder">Reminder</option>
+            <option value="Konfirmasi">Konfirmasi</option>
+          </select>
+          <input
+            type="email"
+            placeholder="Email customer"
+            required
+            value={formData.to}
+            onChange={(e) => setFormData({ ...formData, to: e.target.value })}
+            style={{
+              flex: 1,
+              padding: 8,
+              borderRadius: 6,
+              border: '1px solid #ccc',
+            }}
+          />
+        </div>
+        <textarea
+          placeholder={`Isi pesan ${formData.type.toLowerCase()}...`}
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          required
+          style={{
+            width: '100%',
+            minHeight: 100,
+            padding: 10,
+            borderRadius: 6,
+            border: '1px solid #ccc',
+            marginBottom: 10,
+          }}
+        ></textarea>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: '#1D5B5C',
+            color: '#fff',
+            padding: '10px 20px',
+            borderRadius: 8,
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          Kirim Email
+        </button>
+      </form>
+
+      {/* List Email yang Dikirim */}
+      <div style={{ padding: 30, borderTop: '2px dashed #eee' }}>
+        <h3 style={{ fontSize: 20, marginBottom: 10 }}>📬 Email yang Sudah Dikirim</h3>
+        {sentEmails.length === 0 ? (
+          <p style={{ color: '#999' }}>Belum ada email yang dikirim.</p>
+        ) : (
+          <ul style={{ listStyle: 'disc', paddingLeft: 20 }}>
+            {sentEmails.map((e, idx) => (
+              <li key={idx}>
+                <strong>{e.to}</strong> — <em>{e.subject}</em> ({e.date})
+              </li>
+            ))}
           </ul>
-          <p className="text-xs text-gray-400">Last updated 14 Dec '23</p>
-        </div>
-
-        {/* Deliverability score */}
-        <div className="bg-white shadow rounded p-4 text-center">
-          <h3 className="font-semibold mb-2">Deliverability Score</h3>
-          <div className="text-4xl text-green-600 font-bold">94%</div>
-        </div>
-
-        {/* Mini Chart Placeholder */}
-        <div className="bg-white shadow rounded p-4">
-          <h3 className="font-semibold mb-2">Deliverability Trends</h3>
-          <div className="text-center text-gray-400">[Chart Placeholder]</div>
-        </div>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default Email;

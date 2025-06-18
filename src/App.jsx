@@ -12,6 +12,7 @@ import Email from './pages/Email';
 import JanjiTemu from './pages/JanjiTemu'; // ✅ Import JanjiTemu
 import { LogIn } from 'lucide-react';
 import Signin from './pages/Signin';
+import TriggerMarketing from './pages/TriggerMarketing';
 
 
 
@@ -37,7 +38,10 @@ function App() {
         <Route path='/Profile' element={<Profile/>}></Route>
         <Route path='/PromoList' element={<PromoList/>}></Route>
         <Route path='/Reservasi' element={<Reservasi/>}></Route>
+         <Route path='/TriggerMarketing' element={<TriggerMarketing/>}></Route>
         <Route path='/TestimoniPasien' element={<TestimoniPasien/>}></Route>
+        
+        
       </Route>
     </Routes>
   );
