@@ -14,7 +14,7 @@ const Fasilitas = () => {
       icon: '🦷',
       description:
         'Menggunakan teknologi terkini seperti kamera intra oral, foto rontgen periapikal, dan alat electrosurgery.',
-      image: '',
+      image: 'https://gaiadentalclinic.id/wp-content/uploads/2023/05/Dental-Chair-Dental-A-1536x1152.jpg',
     },
   ]);
 
@@ -67,7 +67,7 @@ const Fasilitas = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 mt-10 bg-white rounded-2xl shadow-md">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Fasilitas Kami</h1>
+      <h1 className="text-2xl font-bold text-[#1D5B5C] mb-6 text-center">Fasilitas Kami</h1>
 
       {/* Form Tambah/Edit Fasilitas */}
       <form onSubmit={handleSubmit} className="mb-10 space-y-4">
@@ -123,8 +123,10 @@ const Fasilitas = () => {
         <button
           type="submit"
           className={`mt-3 ${
-            editIndex !== null ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-blue-600 hover:bg-blue-700'
-          } text-white px-4 py-2 rounded-md`}
+            editIndex !== null
+              ? 'bg-[#EFD070] hover:bg-yellow-400 text-[#1D5B5C]'
+              : 'bg-[#1D5B5C] hover:bg-[#174646] text-white'
+          } px-4 py-2 rounded-md`}
         >
           {editIndex !== null ? 'Simpan Perubahan' : 'Tambahkan Fasilitas'}
         </button>
@@ -135,7 +137,7 @@ const Fasilitas = () => {
         {fasilitas.map((facility, index) => (
           <div
             key={index}
-            className="relative bg-gradient-to-br from-blue-50 to-white p-5 rounded-2xl shadow group transition-transform transform hover:scale-[1.02] duration-300"
+            className="relative bg-gradient-to-br from-[#EFD070]/20 to-white border border-[#EFD070]/30 p-5 rounded-2xl shadow group transition-transform transform hover:scale-[1.02] duration-300"
           >
             {/* Ribbon Icon */}
             <div className="absolute -top-4 -left-4 bg-white border border-gray-300 rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow">
@@ -151,20 +153,20 @@ const Fasilitas = () => {
               />
             )}
 
-            <h2 className="text-lg font-semibold text-gray-800">{facility.name}</h2>
-            <p className="text-gray-600 text-sm mt-1 mb-4">{facility.description}</p>
+            <h2 className="text-lg font-bold text-[#1D5B5C]">{facility.name}</h2>
+            <p className="text-gray-700 text-sm mt-1 mb-4">{facility.description}</p>
 
             <div className="flex justify-end gap-3 text-sm">
               <button
                 onClick={() => handleEdit(index)}
-                className="text-yellow-600 hover:text-yellow-700 flex items-center gap-1"
+                className="text-[#EFD070] hover:text-yellow-400 flex items-center gap-1"
                 title="Edit"
               >
                 ✏️ <span className="hidden sm:inline">Edit</span>
               </button>
               <button
                 onClick={() => handleDelete(index)}
-                className="text-red-600 hover:text-red-700 flex items-center gap-1"
+                className="text-[#1D5B5C] hover:text-red-600 flex items-center gap-1"
                 title="Hapus"
               >
                 🗑️ <span className="hidden sm:inline">Hapus</span>

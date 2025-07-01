@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ← Wajib untuk redirect
 
 const Signin = () => {
+  const navigate = useNavigate(); // ← Hook dari react-router-dom
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
 
+  // ✅ Fungsi login
+  const handleLogin = () => {
+    // Simpan status login ke localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userEmail', email); // Opsional
+
+    // Redirect ke halaman admin
+    navigate('/dashboard');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ email, password, remember });
-    alert('Login berhasil (simulasi)');
+
+    // Simulasi validasi
+    if (email && password) {
+      alert('Login berhasil');
+      handleLogin(); // ✅ Panggil handleLogin di sini
+    } else {
+      alert('Email dan password wajib diisi!');
+    }
   };
 
   return (
@@ -77,7 +96,7 @@ const Signin = () => {
         <div className="hidden md:flex md:w-1/2 items-center justify-center p-6">
           <div className="border-[20px] border-yellow-300 rounded-[60px]">
             <img
-              src="https://i.pinimg.com/736x/fa/6f/64/fa6f649e87f904b3a254e9dcf9575ea0.jpg" // Ganti jika perlu
+              src="https://i.pinimg.com/736x/fa/6f/64/fa6f649e87f904b3a254e9dcf9575ea0.jpg"
               alt="Tooth Family"
               className="object-cover w-[300px] h-[300px] rounded-[40px]"
             />

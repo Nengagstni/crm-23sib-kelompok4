@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 const dummyEmails = [
   {
@@ -6,8 +6,8 @@ const dummyEmails = [
     sender: 'aa.customer@example.com',
     subject: 'Pertanyaan Reservasi',
     date: '2025-06-17',
-    body: `Halo, saya ingin menanyakan apakah masih ada slot reservasi untuk tanggal 25 Juni?  
-Terima kasih!  
+    body: `Halo, saya ingin menanyakan apakah masih ada slot reservasi untuk tanggal 25 Juni? 
+Terima kasih! 
 - aa customer`,
   },
   {
@@ -24,44 +24,53 @@ Terima kasih!
     date: '2025-06-15',
     body: 'Dapatkan promo khusus minggu ini untuk pembersihan karang gigi.',
   },
-  {
-    id: 4,
-    sender: 'aa.customer@example.com',
-    subject: 'Konfirmasi Pembatalan',
-    date: '2025-06-12',
-    body: `Saya ingin membatalkan reservasi saya pada tanggal 22 Juni. Mohon konfirmasi ya.  
-Terima kasih,  
-aa customer`,
-  },
 ];
 
 const Email = () => {
-  const [emails] = useState(dummyEmails);
-  const [selectedEmailId, setSelectedEmailId] = useState(emails[0]?.id || null);
+  const [inboxEmails] = useState(dummyEmails);
+  const [selectedEmailId, setSelectedEmailId] = useState(inboxEmails[0]?.id || null);
   const [sentEmails, setSentEmails] = useState([]);
 
-  const [formData, setFormData] = useState({
+  const [newEmailForm, setNewEmailForm] = useState({
     to: '',
     message: '',
     type: 'Promo',
   });
 
-  const selectedEmail = emails.find((email) => email.id === selectedEmailId);
+  const selectedEmail = useMemo(
+    () => inboxEmails.find((email) => email.id === selectedEmailId),
+    [selectedEmailId, inboxEmails]
+  );
 
-  const handleSend = (e) => {
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setNewEmailForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSendEmail = (e) => {
     e.preventDefault();
-    if (formData.to && formData.message) {
-      const newEmail = {
+
+    const { to, message, type } = newEmailForm;
+
+    if (to && message) {
+      const newSentEmail = {
         id: sentEmails.length + 1,
         sender: 'you@clinic.com',
-        subject: `${formData.type} untuk Customer`,
+        subject: `${type} untuk Customer`,
         date: new Date().toISOString().split('T')[0],
-        body: formData.message,
-        to: formData.to,
-        type: formData.type,
+        body: message,
+        to: to,
+        type: type,
       };
-      setSentEmails([...sentEmails, newEmail]);
-      setFormData({ to: '', message: '', type: 'Promo' });
+
+      setSentEmails((prevSentEmails) => [...prevSentEmails, newSentEmail]);
+
+      setNewEmailForm({ to: '', message: '', type: 'Promo' });
+    } else {
+      alert('Mohon lengkapi alamat email dan isi pesan.');
     }
   };
 
@@ -88,7 +97,7 @@ const Email = () => {
           padding: '10px 0',
         }}
       >
-        {emails.map((email) => (
+        {inboxEmails.map((email) => (
           <div
             key={email.id}
             onClick={() => setSelectedEmailId(email.id)}
@@ -165,12 +174,13 @@ const Email = () => {
       </div>
 
       {/* Form Kirim Email */}
-      <form onSubmit={handleSend} style={{ padding: 30, borderTop: '2px dashed #eee' }}>
+      <form onSubmit={handleSendEmail} style={{ padding: 30, borderTop: '2px dashed #eee' }}>
         <h3 style={{ fontSize: 20, marginBottom: 12 }}>✉️ Kirim Email ke Customer</h3>
         <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
           <select
-            value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+            name="type"
+            value={newEmailForm.type}
+            onChange={handleFormChange}
             style={{
               padding: 8,
               borderRadius: 6,
@@ -180,14 +190,16 @@ const Email = () => {
           >
             <option value="Promo">Promo</option>
             <option value="Reminder">Reminder</option>
+            {/* Opsi "Konfirmasi" tetap ada, bisa digunakan untuk konfirmasi umum */}
             <option value="Konfirmasi">Konfirmasi</option>
           </select>
           <input
             type="email"
             placeholder="Email customer"
             required
-            value={formData.to}
-            onChange={(e) => setFormData({ ...formData, to: e.target.value })}
+            name="to"
+            value={newEmailForm.to}
+            onChange={handleFormChange}
             style={{
               flex: 1,
               padding: 8,
@@ -197,9 +209,10 @@ const Email = () => {
           />
         </div>
         <textarea
-          placeholder={`Isi pesan ${formData.type.toLowerCase()}...`}
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          placeholder={`Isi pesan ${newEmailForm.type.toLowerCase()}...`}
+          name="message"
+          value={newEmailForm.message}
+          onChange={handleFormChange}
           required
           style={{
             width: '100%',
